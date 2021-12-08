@@ -1,0 +1,50 @@
+@mixin b-position($bg-position...) {
+    background-position: $bg-position;
+}
+
+@mixin b-image($color1, $color2, $color3) {
+    background-image: 
+        linear-gradient(90deg, $color2, $color1),
+        radial-gradient(transparent 40%, $color3 42%),
+        radial-gradient(transparent 40%, $color3 42%),
+        url(../image/img640x480-1.png) 
+        ;
+    background-blend-mode: color-burn;
+}
+
+@mixin children {
+    $lastGcolor: #333;
+
+    @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            transform: rotateY(($i - 1) * 10 - 45deg);
+            @include b-position(-5rem center, top, bottom, -5rem * $i center);
+
+            @keyframes slide-#{$i} {
+                from { @include b-position(-5rem center, top, bottom, -5rem * $i center); }
+                to   { @include b-position(-5rem center, top, bottom, -5rem * $i - 50rem center); }
+            }
+            animation: slide-#{$i} 10s infinite;
+
+            @if $i <= 5 {
+                @include b-image(
+                    lighten($lastGcolor, $i * 5%), 
+                    $lastGcolor, 
+
+                    lighten(#1f1f1f, $i * 10%)
+                );
+
+                $lastGcolor: lighten($lastGcolor, $i * 5%);
+            } @else if $i > 5 {
+                @include b-image(
+                    darken($lastGcolor, ($i - 5) * 5%), 
+                    $lastGcolor,
+
+                    darken(#aaa, ($i - 5) * 10%)
+                );
+
+                $lastGcolor: darken($lastGcolor, ($i - 5) * 5%);
+            }
+        }
+    }
+}

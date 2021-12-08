@@ -1,0 +1,36 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #1E292F;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.carousel {
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid green;
+  width: 70rem;
+  height: 90rem;
+  -webkit-perspective: 50rem;
+          perspective: 50rem;
+}
+
+.carousel__Slide {
+  -webkit-transform-origin: center center -28rem;
+          transform-origin: center center -28rem;
+  background-size: cover, 5rem 5rem, 5rem 5rem, auto 40rem;
+  background-repeat: repeat-x, repeat-x, no-repeat;
+}
+/*# sourceMappingURL=carousel.css.map */
